@@ -10,6 +10,9 @@ COPY . .
 
 EXPOSE 80
 
-VOLUME ["/app/feedback"]
+#FIX: anonymous volume - Need to change to named volumes so our data persists correctly
+
+# We have to create the named volume when we create our container with the -v flag
+# VOLUME ["/app/feedback"]
 
 CMD ["node", "server.js"]
