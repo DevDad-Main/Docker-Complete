@@ -20,4 +20,7 @@ EXPOSE 80
 
 # docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "$(pwd)":/app -v /app/node_modules feedback-node:named-vol
 
-CMD ["node", "server.js"]
+# CMD ["node", "server.js"]
+
+# Utilizing the nodemon package
+CMD ["npm", "start"]

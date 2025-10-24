@@ -29,6 +29,8 @@ app.post("/create", async (req, res) => {
 
   const adjTitle = title.toLowerCase();
 
+  console.log("Feedback Created: ", adjTitle, content);
+
   const tempFilePath = path.join(__dirname, "temp", adjTitle + ".txt");
   const finalFilePath = path.join(__dirname, "feedback", adjTitle + ".txt");
 
