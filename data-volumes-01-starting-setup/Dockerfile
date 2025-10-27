@@ -8,7 +8,15 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+ENV PORT=80
+
+# We have to use the $PORT variable to get the port number from the environment variable
+
+# Instead of specifying everything here we can put all our variables in an .env and add that to our docker run command like so
+# -e PORT=8000 - Singular flag
+# Full Command: docker run -d --rm -p 3000:80 --env-file ./.env --name feedback-app -v feedback:/app/feedback -v "$(pwd)":/app:ro -v /app/temp -v /app/node_modules feedback-node:env
+
+EXPOSE $PORT
 
 #FIX: anonymous volume - Need to change to named volumes so our data persists correctly
 
