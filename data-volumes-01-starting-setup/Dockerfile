@@ -21,8 +21,12 @@ EXPOSE 80
 # docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "$(pwd)":/app -v /app/node_modules feedback-node:named-vol
 
 # We can also define the :ro read only flag to ensure that the data inside if we modify anything it dosent make chnges on the outside - so we cotnain everyting in our container as by default bing mounts have R/W access.
+
 # docker run -d --rm -p 3000:80 --name feedback-app -v feedback:/app/feedback -v "$(pwd)":/app:ro -v /app/temp -v /app/node_modules feedback-node:volumes
 
+#NOTE: We dont us our anonymous volumes like this - we need to define them in the command and we make our bind mount to really ensure that it override the bind mount.
+# VOLUME ["/app/node_modules"]
+# VOLUME ["/app/temp"]
 
 # CMD ["node", "server.js"]
 
