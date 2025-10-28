@@ -8,7 +8,16 @@ RUN npm install
 
 COPY . .
 
-ENV PORT=80
+#INFO: We place it after the above so we don't have to re-check everything above just because i changed the port number for e.g. -> the top is already cached so we skip those layers
+
+# This is a bit of inception what we are doing below but it just shows off how we can use the build time args and then use them as variables in place for other ENV vars for e.g
+
+#NOTE: We can then have different images for different environments - dev, test, prod etc
+# For Web Image: docker build -t feedback-node:web .
+# For Dev Image: docker build -t feedback-node:dev --build-arg DEFAULT_PORT=3000 . -> We can specify this build time arg and change it for our Development environment
+ARG DEFAULT_PORT=80
+
+ENV PORT=${DEFAULT_PORT}
 
 # We have to use the $PORT variable to get the port number from the environment variable
 
