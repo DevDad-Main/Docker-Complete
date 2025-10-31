@@ -66,11 +66,26 @@ app.get("/people", async (req, res) => {
     res.status(500).json({ message: "Something went wrong." });
   }
 });
+//
+// mongoose.connect(
+//   // NOTE: This fails due to docker networking issues, we can use the host.docker.interal which docker can read -> essentially transforms our IP address off the local host machine
+//   // "mongodb://172.17.0.1:27017/swfavorites",
+//   "mongodb://172.17.0.2:27017/swfavorites",
+//   // "mongodb://127.0.0.1:27017/swfavorites",
+//   // "mongodb://localhost:27017/swfavorites",
+//   { useNewUrlParser: true },
+//   (err) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       app.listen(3000);
+//     }
+//   },
+// );
 
+//NOTE: Now we can use our newely creeated network to connect our containers! -> we simply us the containers name inplace of where the url string should go.
 mongoose.connect(
-  // NOTE: This fails due to docker networking issues, we can use the host.docker.interal which docker can read -> essentially transforms our IP address off the local host machine
-  // "mongodb://172.17.0.1:27017/swfavorites",
-  "mongodb://172.17.0.2:27017/swfavorites",
+  "mongodb://mongodb:27017/swfavorites",
   // "mongodb://127.0.0.1:27017/swfavorites",
   // "mongodb://localhost:27017/swfavorites",
   { useNewUrlParser: true },
