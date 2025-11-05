@@ -1,0 +1,4 @@
+# These will be the files or folders that are excluded from the docker image when we use the COPY cmd
+node_modules
+Dockerfile
+.git

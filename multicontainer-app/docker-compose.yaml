@@ -1,0 +1,22 @@
+services:
+  mongodb:
+    image: "mongo"
+    volumes:
+      - data:/data/db # Named volumes
+    # environment:
+    #   # Assigning our key value pairs like so or wqe can specify the path to our file
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: example
+    env_file:
+      # Here we use the env_file syntax and specify the relavtive path
+      - ./backend/mongo.env
+      # NOTE: We dont need to specify the networks as docker compose will automatically compile all of our services specified in this compose file into their own enviorment.
+    # networks:
+    #   - goals-net
+  backend:
+
+  frontend:
+# Top Level Volumes key - Any named volumes we use have to be defined here also
+volumes:
+  # Anonymous and bind mounts don't need to be specified here
+  data: # We leave it emoty like so but we are just making docker aware of the volume
