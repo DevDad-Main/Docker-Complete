@@ -31,6 +31,14 @@ services:
 
   frontend:
     build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    depends_on:
+      - backend
 # Top Level Volumes key - Any named volumes we use have to be defined here also
 volumes:
   # Anonymous and bind mounts don't need to be specified here
